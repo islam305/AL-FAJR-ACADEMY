@@ -97,4 +97,55 @@
   /* ---------- Footer year ---------- */
   const year = document.getElementById("year");
   if (year) year.textContent = String(new Date().getFullYear());
+
+  /* ---------- Salawat pop ---------- */
+  const salawatPop = document.getElementById("salawatPop");
+  const salawatClose = salawatPop ? salawatPop.querySelector(".salawat-pop__close") : null;
+  if (salawatPop) {
+    let salawatTimer = null;
+    let salawatHideTimer = null;
+
+    const hideSalawat = () => {
+      salawatPop.classList.remove("is-visible");
+      salawatPop.setAttribute("aria-hidden", "true");
+      if (salawatHideTimer) { clearTimeout(salawatHideTimer); salawatHideTimer = null; }
+    };
+
+    const showSalawat = () => {
+      if (document.hidden) return;
+      salawatPop.classList.add("is-visible");
+      salawatPop.setAttribute("aria-hidden", "false");
+      if (salawatHideTimer) clearTimeout(salawatHideTimer);
+      salawatHideTimer = setTimeout(hideSalawat, 5000);
+    };
+
+    const scheduleSalawat = (delay) => {
+      if (salawatTimer) clearTimeout(salawatTimer);
+      salawatTimer = setTimeout(() => {
+        showSalawat();
+        scheduleSalawat(45000);
+      }, delay);
+    };
+
+    if (salawatClose) {
+      salawatClose.addEventListener("click", hideSalawat);
+    }
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        if (salawatTimer) { clearTimeout(salawatTimer); salawatTimer = null; }
+        hideSalawat();
+      } else {
+        scheduleSalawat(5000);
+      }
+    });
+
+    if (!prefersReducedMotion) {
+      scheduleSalawat(5000);
+    } else {
+      // Show once, briefly, for reduced-motion users
+      setTimeout(() => { showSalawat(); }, 5000);
+    }
+  }
+
 })();
