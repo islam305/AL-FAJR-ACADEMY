@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="شعار أكاديمية الفجر">
+  <defs>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F1D79A" />
+      <stop offset=".55" stop-color="#D9AE55" />
+      <stop offset="1" stop-color="#BC8B2C" />
+    </linearGradient>
+  </defs>
+
+  <path d="M9 58V30C9 16.5 19.5 9 32 3.5 44.5 9 55 16.5 55 30v28Z" fill="#08301F" stroke="url(#gold)" stroke-width="2.4" stroke-linejoin="round" />
+
+  <g stroke="url(#gold)" stroke-width="1.5" stroke-linecap="round">
+    <line x1="20.9" y1="31" x2="16.5" y2="29.9" />
+    <line x1="23.2" y1="26.6" x2="19.7" y2="23.7" />
+    <line x1="27.1" y1="23.6" x2="25.2" y2="19.5" />
+    <line x1="32" y1="22.5" x2="32" y2="18" />
+    <line x1="36.9" y1="23.6" x2="38.8" y2="19.5" />
+    <line x1="40.8" y1="26.6" x2="44.3" y2="23.7" />
+    <line x1="43.1" y1="31" x2="47.5" y2="29.9" />
+  </g>
+
+  <circle cx="32" cy="34" r="8.2" fill="url(#gold)" />
+
+  <g fill="#F8F3E7" stroke="url(#gold)" stroke-width="1.1" stroke-linejoin="round">
+    <path d="M32 46.2c-5-3.2-11-4-16.5-2.6V53c5.5-1.4 11.5-.4 16.5 2.6Z" />
+    <path d="M32 46.2c5-3.2 11-4 16.5-2.6V53c-5.5-1.4-11.5-.4-16.5 2.6Z" />
+  </g>
+  <path d="M32 46.2v9.4" stroke="#C99A3B" stroke-width="1.1" stroke-linecap="round" />
+</svg>
