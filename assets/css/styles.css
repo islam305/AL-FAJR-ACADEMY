@@ -723,7 +723,7 @@ button {
 }
 
 .hero-fact--top {
-  top: 8%;
+  bottom: 10%;
   inset-inline-start: -1.2rem;
 }
 
