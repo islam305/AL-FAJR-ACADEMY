@@ -171,11 +171,33 @@
       tPrev.disabled = tIndex <= 0;
       tNext.disabled = tIndex >= maxIndex();
     };
+    let idleTimer = null;
+    const setIdle = () => {
+      tPrev.classList.add("is-idle");
+      tNext.classList.add("is-idle");
+    };
+    const clearIdle = () => {
+      tPrev.classList.remove("is-idle");
+      tNext.classList.remove("is-idle");
+    };
+    const scheduleIdle = () => {
+      if (idleTimer) clearTimeout(idleTimer);
+      clearIdle();
+      idleTimer = setTimeout(setIdle, 1200);
+    };
+
     tNext.addEventListener("click", () => {
-      if (tIndex < maxIndex()) { tIndex++; update(); }
+      if (tIndex < maxIndex()) { tIndex++; update(); scheduleIdle(); }
     });
     tPrev.addEventListener("click", () => {
-      if (tIndex > 0) { tIndex--; update(); }
+      if (tIndex > 0) { tIndex--; update(); scheduleIdle(); }
+    });
+
+    [tPrev, tNext].forEach((btn) => {
+      btn.addEventListener("mouseenter", clearIdle);
+      btn.addEventListener("mouseleave", scheduleIdle);
+      btn.addEventListener("focus", clearIdle);
+      btn.addEventListener("blur", scheduleIdle);
     });
     window.addEventListener("resize", () => {
       tIndex = Math.min(tIndex, maxIndex());

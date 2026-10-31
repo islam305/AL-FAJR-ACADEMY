@@ -1919,6 +1919,14 @@ button {
     0 0 0 1px rgba(201, 154, 59, 0.8);
 }
 
+.t-nav.is-idle {
+  opacity: 0.22;
+}
+
+.t-nav.is-idle:hover {
+  opacity: 1;
+}
+
 .t-nav:disabled {
   opacity: 0.35;
   cursor: not-allowed;
