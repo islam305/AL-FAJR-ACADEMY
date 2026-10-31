@@ -148,4 +148,40 @@
     }
   }
 
+
+  /* ---------- Testimonials carousel ---------- */
+  const tTrack = document.getElementById("testimonialsTrack");
+  const tPrev = document.querySelector(".t-nav--prev");
+  const tNext = document.querySelector(".t-nav--next");
+  if (tTrack && tPrev && tNext) {
+    let tIndex = 0;
+    const cards = () => Array.from(tTrack.children);
+    const perView = () => (window.innerWidth >= 981 ? 3 : window.innerWidth >= 720 ? 2 : 1);
+    const maxIndex = () => Math.max(0, cards().length - perView());
+    const cardStep = () => {
+      const c = cards()[0];
+      if (!c) return 0;
+      const gap = parseFloat(getComputedStyle(tTrack).gap) || 0;
+      return c.getBoundingClientRect().width + gap;
+    };
+    const isRtl = getComputedStyle(tTrack).direction === "rtl";
+    const update = () => {
+      const x = isRtl ? tIndex * cardStep() : -tIndex * cardStep();
+      tTrack.style.transform = "translateX(" + x + "px)";
+      tPrev.disabled = tIndex <= 0;
+      tNext.disabled = tIndex >= maxIndex();
+    };
+    tNext.addEventListener("click", () => {
+      if (tIndex < maxIndex()) { tIndex++; update(); }
+    });
+    tPrev.addEventListener("click", () => {
+      if (tIndex > 0) { tIndex--; update(); }
+    });
+    window.addEventListener("resize", () => {
+      tIndex = Math.min(tIndex, maxIndex());
+      update();
+    });
+    update();
+  }
+
 })();
